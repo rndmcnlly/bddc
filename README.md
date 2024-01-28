@@ -28,6 +28,21 @@ Alternatively, communicate with it via pipes:
     $ pip install -r requirements.txt
     $ nuitka3 --onefile bddc.py
 
+
+# Ideas for future improvements
+
+ * Add a `pyproject.toml` to mechanize build process and formalize project metadata.
+ * Start versioning and keeping track of interesting changes via documentatoin.
+ * Investigate source of startup delay.
+ * Create an `examples/` folder with usage inspirations. Some ideas:
+    - Use `bddc` as a handy interactive calculator (performance many operations using the default context shorthand).
+    - Use `bddc` in batch mode from a larger POSIX shell script with stdio piped through other common shell tools like [`jq`](https://jqlang.github.io/jq/).
+    - Use `bddc` in service mode, possibly loading a huge serialized BDD created in a preprocesing step before answering several incremental queries in the same session.
+    - Invent a naming convention where `foo.bddc.py` identifies a Python-syntax script that is meant to be executed in `bddc` rather than normal Python.
+ * Add some command line arguments that offer better in-tool documentation and support for adding new modes/options.
+ * Add some helper functions for load/dump of circuits in a way that preserves the meaning of a Context, not just the raw BDD. Can we just stuff the data from `context.vars` into the JSON data that is used by the lower-level BDD serde?
+ * Add a usage mode (e.g. `bddc -t`) that allows quickly evaluating simple TLA+ expressions from command line arguments. Optionally allow certain circuits to be populated from external files. Need some way to pick outputs: sat/unsat, count, first-k solutions (where k=0 means all)? What syntax for outputs? TLA+ representing a conjunction of concrete assignments? 
+
 # Credits
 
 Created by [Adam Smith](https://adamsmith.as/).
