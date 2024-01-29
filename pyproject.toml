@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "bddc"
+version = "0.1.0"
+description = "the interactive BDD calculator"
+authors = ["Adam Smith <adam@adamsmith.as>"]
+readme = "README.md"
+homepage = "https://github.com/rndmcnlly/bddc"
+repository = "https://github.com/rndmcnlly/bddc"
+keywords = ["bdd"]
+
+[tool.poetry.dependencies]
+python = ">=3.7,<3.12"
+omega = "0.3"
+Nuitka = "2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

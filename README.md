@@ -21,18 +21,16 @@ Alternatively, communicate with it via pipes:
 
     $ echo "print('meow')" | ./bddc
 
-# Building
+# Building from source
 
-    $ python3 -m venv venv
-    $ . ./venv/bin/activate
-    $ pip install -r requirements.txt
-    $ nuitka3 --onefile bddc.py
+Assuming you have downloaded this repository, installed Python, and installed poetry (e.g. via pipx), run the following commands to install this project's dependencies and build the `bddc` executable for your platform.
 
+    $ poetry install
+    $ poetry run nuitka3 bddc.py
 
 # Ideas for future improvements
 
- * Add a `pyproject.toml` to mechanize build process and formalize project metadata.
- * Start versioning and keeping track of interesting changes via documentatoin.
+ * Start using semver and keeping track of interesting changes via readme.
  * Investigate source of startup delay.
  * Create an `examples/` folder with usage inspirations. Some ideas:
     - Use `bddc` as a handy interactive calculator (performance many operations using the default context shorthand).
