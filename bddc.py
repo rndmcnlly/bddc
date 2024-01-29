@@ -2,7 +2,6 @@
 
 # nuitka-project: --onefile
 # nuitka-project: --static-libpython=yes
-# nuitka-project: --remove-output
 # nuitka-project: --output-filename=bddc
 
 # XXX: hack to avoid bloat of likely-unused networkx
