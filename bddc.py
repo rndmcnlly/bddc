@@ -40,12 +40,16 @@ default `omega.symbolic.fol.Context` instance or use the `Context`
 constructor to create your own.
 """
 
-if __name__ == "__main__":
+def main():
   if sys.stdin.isatty():
     code.interact(
       banner=banner,
-      local=env
+      local=env,
+      exitmsg="bddc you later!",
     )
   else:
     for line in sys.stdin:
-      exec(line, locals=env)
+      exec(line, None, env)
+
+if __name__ == "__main__":
+  main()
