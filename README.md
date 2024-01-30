@@ -4,6 +4,8 @@ This project implements a command line tool, `bddc`, that offers access to a sel
 
 The user of `bddc` should think of it as like [`dc`](https://en.wikipedia.org/wiki/Dc_(computer_program)) (in that it offers a calculator in a [repl](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) interface) or [`z3`](https://github.com/Z3Prover/z3) (in that it packages up a complex inference engine). While `bddc` can be used iteractively for quick experiments, it can be run as a subprocess of larger applications (similar to how the [`minisat`](http://minisat.se/) SAT solver is often used). The analogy with `z3` goes deeper, however, as `bddc` allows working with expressions over bitvectors rather than elementary Boolean variables. In fact, a subset of the [`TLA+`](https://lamport.azurewebsites.net/tla/tla.html) language is supported for rapidly constructing large circuits from simple expressions over bitvectors.
 
+*If `omega` is just some Python library can be easily installed with pip, why does `bddc` exist?* At least currently, `omega` only offers its full functionality (a wrapper around [`cudd`](https://github.com/ivmai/cudd)) when compiled for Python 3.10 on Linux. By packaging `bddc` as a self-contained executable, it can be integrated into applications without needing to reproduce the environment needed to build `bddc` in the first place. Someday, someone can build an [αcτµαlly pδrταblε εxεcµταblε](https://justine.lol/ape.html) to stretch a single binary for this project across many more platforms.
+
 # Usage
 
 Launch it in a shell:
@@ -23,7 +25,7 @@ Alternatively, communicate with it via pipes:
 
 # Building from source
 
-Assuming you have downloaded this repository, installed Python, and installed poetry (e.g. via pipx), run the following commands to install this project's dependencies and build the `bddc` executable for your platform.
+Assuming you have downloaded this repository, installed Python 3.10, and installed poetry, run the following commands to install this project's dependencies and build the `bddc` executable binary for your platform.
 
     $ poetry install
     $ poetry run nuitka3 bddc.py
