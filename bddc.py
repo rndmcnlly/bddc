@@ -19,7 +19,8 @@ convenience_functions = {k: getattr(default_context, k) for k in dir(default_con
 env = {
   'Context': Context,
   'default_context': default_context,
-  **convenience_functions
+  **convenience_functions,
+  'exit': sys.exit
 }
 
 banner = f"""
@@ -39,16 +40,15 @@ default `omega.symbolic.fol.Context` instance or use the `Context`
 constructor to create your own.
 """
 
+exitmsg = "bddc you later!"
+
 def main():
+  console = code.InteractiveConsole(env)
   if sys.stdin.isatty():
-    code.interact(
-      banner=banner,
-      local=env,
-      exitmsg="bddc you later!",
-    )
+    console.interact(banner, exitmsg)
   else:
     for line in sys.stdin:
-      exec(line, None, env)
+      console.push(line)
 
 if __name__ == "__main__":
   main()
