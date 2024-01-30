@@ -9,7 +9,7 @@ repository = "https://github.com/rndmcnlly/bddc"
 keywords = ["bdd"]
 
 [tool.poetry.dependencies]
-python = ">=3.7,<3.12"
+python = ">=3.10,<3.11"
 omega = "0.3"
 Nuitka = "2.0"
 
