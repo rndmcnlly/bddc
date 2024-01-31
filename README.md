@@ -28,6 +28,7 @@ Alternatively, communicate with it via pipes:
 Assuming you have downloaded this repository, installed Python 3.10, and installed poetry, run the following commands to install this project's dependencies and build the `bddc` executable binary for your platform.
 
     $ poetry install
+    $ poetry run pip uninstall -y dd
     $ git clone https://github.com/tulip-control/dd.git dd-git
     $ cd dd-git
     $ poetry run python setup.py install --fetch --cudd --cudd_zdd
@@ -36,8 +37,7 @@ Assuming you have downloaded this repository, installed Python 3.10, and install
 
 # Ideas for future improvements
 
- * Setup GitHub actions to release an updated binary in response to each update to the repository.
- * Figure out how nuitka's configuration system works so I can add a rule to embed the `cudd` native library into the final build. See: https://nuitka.net/doc/nuitka-package-config.html#dlls
+ * Create a poetry script to automate the weird setup process.
  * Start using semver and keeping track of interesting changes via readme.
  * Investigate source of startup delay.
  * Create an `examples/` folder with usage inspirations. Some ideas:

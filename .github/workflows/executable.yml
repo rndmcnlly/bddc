@@ -23,9 +23,10 @@ jobs:
             -   run: poetry install
 
             -   run: |
+                    poetry run pip uninstall -y dd
                     git clone https://github.com/tulip-control/dd.git dd-git
                     cd dd-git
-                    python setup.py install --fetch --cudd --cudd_zdd
+                    poetry run python setup.py install --fetch --cudd --cudd_zdd
                     cd ..
                     
             -   run: poetry run python -m nuitka bddc.py
