@@ -9,7 +9,7 @@ jobs:
     build:
         strategy:
             matrix:
-                os: [ubuntu-latest]
+                os: [macos-latest, ubuntu-latest, windows-latest]
         runs-on: ${{ matrix.os }}
 
         steps:
@@ -28,5 +28,8 @@ jobs:
             -   uses: actions/upload-artifact@v3
                 with:
                     name: bddc
-                    path: bddc
+                    path: |
+                        build/*.exe
+                        build/*.bin
+                        build/*.app/**/*
 
