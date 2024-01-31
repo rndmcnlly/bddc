@@ -31,7 +31,7 @@ jobs:
 
             -   uses: actions/upload-artifact@v3
                 with:
-                    name: bddc
+                    name: ${{ runner.os }} Build
                     path: |
                         build/*.exe
                         build/*.bin
