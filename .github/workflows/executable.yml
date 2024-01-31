@@ -21,6 +21,13 @@ jobs:
                     cache: 'poetry'
 
             -   run: poetry install
+
+            -   run: |
+                    git clone https://github.com/tulip-control/dd.git dd-git
+                    cd dd-git
+                    python setup.py install --fetch --cudd --cudd_zdd
+                    cd ..
+                    
             -   run: poetry run python -m nuitka bddc.py
 
             -   uses: actions/upload-artifact@v4

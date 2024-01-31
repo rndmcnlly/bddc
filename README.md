@@ -28,6 +28,10 @@ Alternatively, communicate with it via pipes:
 Assuming you have downloaded this repository, installed Python 3.10, and installed poetry, run the following commands to install this project's dependencies and build the `bddc` executable binary for your platform.
 
     $ poetry install
+    $ git clone https://github.com/tulip-control/dd.git dd-git
+    $ cd dd-git
+    $ poetry run python setup.py install --fetch --cudd --cudd_zdd
+    $ cd ..
     $ poetry run nuitka3 bddc.py
 
 # Ideas for future improvements
