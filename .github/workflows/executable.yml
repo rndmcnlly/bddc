@@ -23,7 +23,11 @@ jobs:
 
             -   run: poetry install
 
-            -   run: poetry run nuitka3 bddc.py
+            -   name: Build Executable
+                uses: Nuitka/Nuitka-Action@main
+                with:
+                    nuitka-version: main
+                    script-name: bddc.py
 
             -   uses: actions/upload-artifact@v3
                 with:
