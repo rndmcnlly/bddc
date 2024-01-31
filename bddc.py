@@ -1,7 +1,8 @@
 # bddc: the interactive BDD calculator
 
 # nuitka-project: --onefile
-# nuitka-project: --static-libpython=yes
+# nuitka-project-if: {OS} != 'Windows':
+#   nuitka-project: --static-libpython=yes
 
 # XXX: hack to avoid bloat of likely-unused networkx
 # nuitka-project: --nofollow-import-to=networkx
