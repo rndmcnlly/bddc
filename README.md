@@ -32,6 +32,8 @@ Assuming you have downloaded this repository, installed Python 3.10, and install
 
 # Ideas for future improvements
 
+ * Setup GitHub actions to release an updated binary in response to each update to the repository.
+ * Figure out how nuitka's configuration system works so I can add a rule to embed the `cudd` native library into the final build. See: https://nuitka.net/doc/nuitka-package-config.html#dlls
  * Start using semver and keeping track of interesting changes via readme.
  * Investigate source of startup delay.
  * Create an `examples/` folder with usage inspirations. Some ideas:
@@ -41,8 +43,22 @@ Assuming you have downloaded this repository, installed Python 3.10, and install
     - Invent a naming convention where `foo.bddc.py` identifies a Python-syntax script that is meant to be executed in `bddc` rather than normal Python.
  * Add some command line arguments that offer better in-tool documentation and support for adding new modes/options.
  * Add some helper functions for load/dump of circuits in a way that preserves the meaning of a Context, not just the raw BDD. Can we just stuff the data from `context.vars` into the JSON data that is used by the lower-level BDD serde?
- * Add a usage mode (e.g. `bddc -t`) that allows quickly evaluating simple TLA+ expressions from command line arguments. Optionally allow certain circuits to be populated from external files. Need some way to pick outputs: sat/unsat, count, first-k solutions (where k=0 means all)? What syntax for outputs? TLA+ representing a conjunction of concrete assignments? 
-
+ * Add a usage mode (e.g. `bddc -t`) that allows quickly evaluating simple TLA+ expressions from command line arguments. Optionally allow certain circuits to be populated from external files. Need some way to declare symbolic variables and their ranges. Need some way to pick outputs: sat/unsat, count, first-k solutions (where k=0 means all)? What syntax for outputs? TLA+ representing a conjunction of concrete assignments?
+   - Example expressions:
+     - Explicit: `TypeInvariant == x \in (0..4) & y \in (0..64); \E x: x*x = y`
+     - Implicit: `x*x = y` (undeclared variables assumed to be -BIG..+BIG based on whatever `omega` supports)
+   - Output format:
+     - process return code `0` if expr was satsifiable (other codes for unsat or parse error)
+     - unless counting/enumerating/picking, print `SAT` or `UNSAT`
+     - for TLA+ output (one sol per line): `x = 3 /\ y = 36`
+     - for JSON output (one sol per line): `{'x': 3, 'y': 36}`
+   - Output control:
+     - `-j` or `--json`: use JSON rather than TLA+ syntax for outputs
+     - `-c` or `--count`: compute exact solution count and print it
+     - `-e N` or `--enumerate N`: print up to N solutions (or all if N=0)
+     - `-p` or `--pick`: like enumerating with N=1
+   - Full example: `bddc -t "\E x: x*x = y" -p -j` (print one perfect square like `{'y': 36}`)
+ 
 # Credits
 
 Created by [Adam Smith](https://adamsmith.as/).
