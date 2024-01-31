@@ -1,4 +1,4 @@
-name: Build Executables
+name: Build Linux Executable
 
 on:
     push:
@@ -8,10 +8,7 @@ on:
 
 jobs:
     build:
-        strategy:
-            matrix:
-                os: [ubuntu-latest]
-        runs-on: ${{ matrix.os }}
+        runs-on: ubuntu-latest
 
         steps:
             -   uses: actions/checkout@v4
@@ -28,9 +25,5 @@ jobs:
 
             -   uses: actions/upload-artifact@v4
                 with:
-                    name: ${{ runner.os }} Build
-                    path: |
-                        build/*.exe
-                        build/*.bin
-                        build/*.app/**/*
+                    path: '*.bin'
 
