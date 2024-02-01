@@ -38,7 +38,6 @@ Assuming you have downloaded this repository, installed Python 3.10, and install
 # Ideas for future improvements
 
  * Create a poetry script to automate the weird setup process.
- * Start using semver and keeping track of interesting changes via readme.
  * Investigate source of startup delay.
  * Create an `examples/` folder with usage inspirations. Some ideas:
     - Use `bddc` as a handy interactive calculator (performance many operations using the default context shorthand).
