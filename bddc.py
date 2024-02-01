@@ -1,5 +1,7 @@
 # bddc: the interactive BDD calculator
 
+# Various portions of this file were created with the help of GitHub Copilot.
+
 # nuitka-project: --onefile
 # nuitka-project-if: {OS} != 'Windows':
 #   nuitka-project: --static-libpython=yes
@@ -8,7 +10,8 @@
 # nuitka-project: --nofollow-import-to=networkx
 import sys
 from types import SimpleNamespace
-sys.modules['networkx'] = SimpleNamespace(MultiDiGraph=None)
+
+sys.modules["networkx"] = SimpleNamespace(MultiDiGraph=None)
 
 import code
 from omega.symbolic.fol import Context
@@ -17,10 +20,10 @@ default_context = Context()
 convenience_functions = {k: getattr(default_context, k) for k in dir(default_context)}
 
 env = {
-  'Context': Context,
-  'default_context': default_context,
-  **convenience_functions,
-  'exit': sys.exit
+    "Context": Context,
+    "default_context": default_context,
+    **convenience_functions,
+    "exit": sys.exit,
 }
 
 banner = f"""
@@ -42,13 +45,16 @@ constructor to create your own.
 
 exitmsg = "bddc you later!"
 
+
 def main():
-  console = code.InteractiveConsole(env)
-  if sys.stdin.isatty():
-    console.interact(banner, exitmsg)
-  else:
-    for line in sys.stdin:
-      console.push(line)
+
+    console = code.InteractiveConsole(env)
+    if sys.stdin.isatty():
+        console.interact(banner, exitmsg)
+    else:
+        for line in sys.stdin:
+            console.push(line)
+
 
 if __name__ == "__main__":
-  main()
+    main()
