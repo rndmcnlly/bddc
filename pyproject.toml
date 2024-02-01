@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bddc"
-version = "0.1.0"
+version = "0.2.0"
 description = "the interactive BDD calculator"
 authors = ["Adam Smith <adam@adamsmith.as>"]
 readme = "README.md"
@@ -14,6 +14,7 @@ omega = "0.3"
 Nuitka = "2.0"
 setuptools = "^69.0"
 cython = "^3.0"
+argparse = "^1.4.0"
 
 [build-system]
 requires = ["poetry-core"]
