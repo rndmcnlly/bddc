@@ -21,9 +21,13 @@ Interact with it as a repl:
 
 Alternatively, communicate with it via pipes:
 
-    $ echo "print('meow')" | ./bddc
+    $ echo "print('meow')" | ./bddc -
 
-Or even use it for quick evaluation of TLA+ expressions:
+Or let it run your scripts:
+
+    $ ./bddc example.bddc.py
+
+Even use it for quick evaluation of TLA+ expressions:
 
     $ # generete some perfect square
     $ ./bddc -t "\E x: x*x=y" -d "x \in 0..16 & y \in 0..256" -e 0 
@@ -44,11 +48,10 @@ Assuming you have downloaded this repository, installed Python 3.10, and install
 
  * Create a poetry script to automate the weird setup process.
  * Investigate source of startup delay.
- * Create an `examples/` folder with usage inspirations. Some ideas:
+ * Add more usage examples:
     - Use `bddc` as a handy interactive calculator (performance many operations using the default context shorthand).
     - Use `bddc` in batch mode from a larger POSIX shell script with stdio piped through other common shell tools like [`jq`](https://jqlang.github.io/jq/).
-    - Use `bddc` in service mode, possibly loading a huge serialized BDD created in a preprocesing step before answering several incremental queries in the same session.
-    - Invent a naming convention where `foo.bddc.py` identifies a Python-syntax script that is meant to be executed in `bddc` rather than normal Python.
+    - Use `bddc` as a long-lived subrocess, possibly loading a huge serialized BDD created in a preprocesing step before answering several incremental queries in the same session.
  * For Python, add some helper functions for load/dump of circuits in a way that preserves the meaning of a Context, not just the raw BDD. Can we just stuff the data from `context.vars` into the JSON data that is used by the lower-level BDD serde?
  
 # Credits

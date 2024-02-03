@@ -80,11 +80,19 @@ def main():
         help="output just one solution",
     )
 
+    parser.add_argument(
+        "filename",
+        nargs="*",
+        help="file to process (if not given, read from stdin)"
+    )
+
     args = parser.parse_args()
     if args.tla:
         eval_tla(args)
-    else:
+    elif args.filename == [] or args.filename == ["-"]:
         run_repl()
+    else:
+        run_files(args.filename)
 
 
 def eval_tla(args: argparse.Namespace):
@@ -132,7 +140,6 @@ def eval_tla(args: argparse.Namespace):
     else:
         print("false" if f == context.false else "true")
 
-
 def run_repl():
     default_context = Context()
     convenience_functions = {
@@ -153,6 +160,10 @@ def run_repl():
         for line in sys.stdin:
             console.push(line)
 
+def run_files(filenames):
+    for filename in filenames:
+        with open(filename, "r") as f:
+            exec(code.compile_command(f.read(), filename, "exec"), globals())
 
 if __name__ == "__main__":
     main()
